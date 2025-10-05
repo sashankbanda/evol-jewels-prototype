@@ -11,141 +11,199 @@
         /* Base Styles: Deep Charcoal Background, Diamond White Text */
         body {
             font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s, color 0.5s; /* Smooth transition for theme change */
+        }
+
+        /* --- Dark Theme Classes (Platinum) --- */
+        .dark-theme {
             background-color: #111111; /* Deep Charcoal */
             color: #F5F5F5; /* Diamond White */
         }
-
-        /* Ensure all screens take full viewport height and center content */
-        .screen {
-            display: none;
-            min-height: 100vh;
-            padding: 1rem;
-            align-items: center; /* Center horizontally in flex column */
-            justify-content: center; /* Center vertically */
-            text-align: center;
-        }
-        
-        /* Custom Text Gradient for Platinum Look (applied to Playfair headings) */
-        .platinum-text-gradient {
-            background: linear-gradient(90deg, #E9E4D0 0%, #C8BCA0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 2px 6px rgba(255, 255, 255, 0.08); /* Soft Embossing */
-            letter-spacing: 0.5px;
-        }
-
-        /* Primary CTA Button Style - Ivory Gradient */
-        .primary-cta {
-            /* Ivory Gradient background, Deep Charcoal text, Platinum border/shadow */
+        .dark-theme .primary-bg { background-color: #111111; }
+        .dark-theme .text-text-light { color: #F5F5F5; }
+        .dark-theme .text-B1B1B1 { color: #B1B1B1; }
+        .dark-theme .text-accent-platinum { color: #DAD5C1; }
+        .dark-theme .card-bg { background-color: #2A2A2A; }
+        .dark-theme .primary-cta {
             background: linear-gradient(145deg, #E8E4D8, #CFC6B0);
             color: #111111;
             border: 0.5px solid #D8CBAF; 
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); 
-            transition: all 0.3s ease-in-out;
-            font-weight: 500;
         }
-        .primary-cta:hover {
+        .dark-theme .primary-cta:hover {
             background: linear-gradient(145deg, #F5F2E8, #D8CBAF);
-            transform: scale(1.02);
+        }
+        .dark-theme .secondary-cta {
+            border: 1px solid #DAD5C1;
+            color: #DAD5C1;
+            background-color: transparent;
+        }
+        .dark-theme .secondary-cta:hover {
+            background-color: #DAD5C1;
+            color: #111111;
+        }
+        .dark-theme .tertiary-cta {
+            background-color: #2A2A2A;
+            color: #F5F5F5;
+        }
+        .dark-theme .tertiary-cta:hover {
+            background-color: #111111;
+        }
+        .dark-theme .quiz-option {
+            background-color: rgba(42, 42, 42, 0.5);
+            color: #F5F5F5;
+            border: 2px solid #111111;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        .dark-theme .quiz-option:hover {
+            border-color: #DAD5C1;
+        }
+        .dark-theme .quiz-option.selected {
+            background-color: #DAD5C1;
+            color: #111111;
+            border-color: #DAD5C1;
+            box-shadow: 0 0 10px rgba(218, 213, 193, 0.3);
+        }
+        .dark-theme #qrCodeContainer { background: #E6E2D3; }
+        .dark-theme .back-btn { background-color: #2A2A2A; color: #F5F5F5; }
+        .dark-theme .back-btn:hover { background-color: #111111; }
+        .dark-theme .cart-icon-btn { background-color: #DAD5C1; color: #111111; }
+        .dark-theme .cart-icon-btn:hover { background-color: #D8CBAF; }
+        .dark-theme .spinner { 
+            border: 8px solid rgba(245, 245, 245, 0.3);
+            border-top: 8px solid #DAD5C1; 
+        }
+        .dark-theme .platinum-text-gradient {
+            background: linear-gradient(90deg, #E9E4D0 0%, #C8BCA0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 6px rgba(255, 255, 255, 0.08); 
+            letter-spacing: 0.5px;
+        }
+        .dark-theme .product-card {
+             background-color: #2A2A2A;
+             border: 1px solid rgba(177, 177, 177, 0.1);
+        }
+        .dark-theme .total-price-font {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500; /* medium */
+        }
+        .dark-theme #startScreenTitle {
+            font-size: 4.5rem; /* text-7xl */
+            line-height: 1.19; /* leading-tighter-custom */
         }
 
-        /* Secondary/Outline CTA Button Style - Platinum Text/Border */
-.secondary-cta {
-    border: 1px solid #DAD5C1;
-    color: #DAD5C1;
-    background-color: transparent;
-    transition: all 0.3s ease-in-out;
-    font-weight: 500;
-}
-.secondary-cta:hover {
-    background-color: #DAD5C1;
-    color: #111111;
-}
 
-
-        .tertiary-cta {
-    background-color: #2A2A2A;
-    color: #F5F5F5;
-    border: none;
-    transition: all 0.3s;
-}
-.tertiary-cta:hover {
-    background-color: #111111;
-}
-
-
-        .quiz-option {
-    transition: all 0.2s;
-    cursor: pointer;
-    background-color: rgba(42, 42, 42, 0.5);
-    color: #F5F5F5;
-    border: 2px solid #111111;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    transform: scale(1);
-}
-.quiz-option:hover {
-    border-color: #DAD5C1;
-    transform: scale(1.02);
-}
-.quiz-option.selected {
-    background-color: #DAD5C1;
-    color: #111111;
-    border-color: #DAD5C1;
-    box-shadow: 0 0 10px rgba(218, 213, 193, 0.3);
-    transform: scale(1.02);
-    font-weight: 600;
-}
-
-
-        /* The QR Code container - Ivory background for scanning */
-        #qrCodeContainer {
-            padding: 20px;
-            background: #E6E2D3; /* Ivory */
-            border-radius: 15px;
-            display: inline-block;
+        /* --- Light Theme Classes (Vibe Match - Red/Gray) --- */
+        .light-theme {
+            background-color: #f7f3f1; /* Light, inviting background */
+            color: #333333; /* Dark text */
+        }
+        .light-theme .primary-bg { background-color: #f7f3f1; }
+        .light-theme .text-text-light { color: #333333; }
+        .light-theme .text-B1B1B1 { color: #737373; }
+        .light-theme .text-accent-platinum { color: #ff5a5f; } /* Accent Red */
+        .light-theme .card-bg { background-color: #FFFFFF; }
+        .light-theme .primary-cta {
+            background: #333333; /* Secondary/Dark button background */
+            color: #FFFFFF;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        }
+        .light-theme .primary-cta:hover {
+            background: #ff5a5f; /* Accent Red on hover */
+        }
+        .light-theme .secondary-cta {
+            border: 1px solid #ff5a5f;
+            color: #ff5a5f;
+            background-color: transparent;
+        }
+        .light-theme .secondary-cta:hover {
+            background-color: #ff5a5f;
+            color: #FFFFFF;
+        }
+        .light-theme .tertiary-cta {
+            background-color: #D1D5DB; /* Light Gray */
+            color: #333333;
+        }
+        .light-theme .tertiary-cta:hover {
+            background-color: #B1B1B1;
+        }
+        .light-theme .quiz-option {
+            background-color: #FFFFFF;
+            color: #333333;
+            border: 2px solid #D1D5DB;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .light-theme .quiz-option:hover {
+            border-color: #ff5a5f;
+        }
+        .light-theme .quiz-option.selected {
+            background-color: #ff5a5f;
+            color: #FFFFFF;
+            border-color: #ff5a5f;
+            box-shadow: 0 0 10px rgba(255, 90, 95, 0.5);
+        }
+        .light-theme #qrCodeContainer { background: #FFFFFF; }
+        .light-theme .back-btn { background-color: #D1D5DB; color: #333333; }
+        .light-theme .back-btn:hover { background-color: #B1B1B1; }
+        .light-theme .cart-icon-btn { background-color: #ff5a5f; color: #FFFFFF; }
+        .light-theme .cart-icon-btn:hover { background-color: #CC484D; }
+        .light-theme .spinner { 
+            border: 8px solid rgba(51, 51, 51, 0.1);
+            border-top: 8px solid #ff5a5f; 
+        }
+        .light-theme .platinum-text-gradient {
+            background: linear-gradient(90deg, #ff5a5f 0%, #CC484D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none; 
+            letter-spacing: normal;
+        }
+        .light-theme .product-card {
+             background-color: #FFFFFF;
+             border: 1px solid #D1D5DB;
+        }
+        .light-theme .total-price-font {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500; /* medium */
+        }
+        /* REQUESTED FIX: Border change when toggled to light theme */
+        .light-theme .border-accent-platinum {
+            border-color: #ff5a5f !important;
+        }
+        /* START SCREEN TITLE LIGHT THEME - FIXED */
+        .light-theme #startScreenTitle {
+            /* Inherits text-7xl md:text-8xl font-serif font-semibold leading-tighter-custom from dark-theme settings */
+            background: linear-gradient(90deg, #ff5a5f 0%, #CC484D 100%); /* Use light theme gradient as platinum-text-gradient replacement */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none; 
+            letter-spacing: normal;
+            text-transform: uppercase; /* Ensure it stays uppercase */
+            animation: none; /* Remove animate-pulse, keep style static */
+            font-size: 4.5rem; /* text-7xl */
+            line-height: 1.19; /* leading-tighter-custom */
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
         }
 
-        /* Fixed positioning for Nav - Full Opacity (as requested) */
-        .back-btn {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    display: flex;
-    align-items: center;
-    background-color: #2A2A2A;
-    color: #F5F5F5;
-    padding: 0.75rem;
-    border-radius: 9999px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    transition: all 0.15s ease-in-out;
-    z-index: 20;
-}
-.back-btn:hover {
-    background-color: #111111;
-}
 
-.cart-icon-btn {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    background-color: #DAD5C1;
-    color: #111111;
-    padding: 0.75rem;
-    border-radius: 9999px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: all 0.15s ease-in-out;
-    z-index: 20;
-}
-.cart-icon-btn:hover {
-    background-color: #D8CBAF;
-}
-
-
-        /* Spinner for Loading Screen */
+        /* Global screen and animation styles */
+        .screen {
+            display: none;
+            min-height: 100vh;
+            padding: 1rem;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
         .spinner {
-            border: 8px solid rgba(245, 245, 245, 0.3); /* Diamond White opacity */
-            border-top: 8px solid #DAD5C1; /* Platinum Silver Accent */
             border-radius: 50%;
             width: 80px;
             height: 80px;
@@ -155,6 +213,105 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        /* Fixed positioning for Nav */
+        .back-btn, .cart-icon-btn {
+            position: fixed;
+            z-index: 20;
+            transition: all 0.15s ease-in-out;
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .back-btn { top: 1rem; left: 1rem; }
+        .cart-icon-btn { top: 1rem; right: 1rem; }
+        .toggle-switch-container {
+            position: fixed;
+            bottom: 1rem; 
+            right: 1rem; 
+            z-index: 50;
+        }
+        .toggle-switch {
+            width: 60px;
+            height: 34px;
+            background-color: #2A2A2A; 
+            border-radius: 34px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.4s;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .toggle-switch::after {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: #F5F5F5;
+            top: 4px;
+            left: 4px;
+            transition: transform 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .toggle-switch.toggled {
+            background-color: #DAD5C1; 
+        }
+        .toggle-switch.toggled::after {
+            transform: translateX(26px);
+            background-color: #111111; 
+        }
+
+        /* Icons inside the switch */
+        .toggle-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: #F5F5F5;
+            transition: opacity 0.4s;
+        }
+        .sun-icon {
+            right: 8px;
+            opacity: 1;
+        }
+        .moon-icon {
+            left: 8px;
+            opacity: 0;
+        }
+        .toggle-switch.toggled .sun-icon {
+            opacity: 0;
+        }
+        .toggle-switch.toggled .moon-icon {
+            opacity: 1;
+        }
+        .toggle-switch.toggled::after {
+            content: ""; /* Maintain original content for smooth transition */
+            transform: translateX(26px);
+        }
+        /* Adjust for Light Theme Colors */
+        .light-theme .toggle-switch {
+            background-color: #DAD5C1;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .light-theme .toggle-switch::after {
+            background-color: #111111;
+            transform: translateX(26px);
+        }
+        .light-theme .toggle-switch.toggled {
+            background-color: #2A2A2A;
+        }
+        .light-theme .toggle-switch.toggled::after {
+            background-color: #F5F5F5;
+            transform: translateX(4px);
+        }
+        .light-theme .sun-icon { color: #111111; opacity: 0; }
+        .light-theme .moon-icon { color: #DAD5C1; opacity: 1; }
+        .light-theme .toggle-switch.toggled .sun-icon { opacity: 1; }
+        .light-theme .toggle-switch.toggled .moon-icon { opacity: 0; }
         
     </style>
     <script>
@@ -162,38 +319,42 @@
             theme: {
                 extend: {
                     colors: {
-                        /* New Platinum Palette */
-                        '111111': '#111111',    /* Deep Charcoal (Background) */
-                        'DAD5C1': '#DAD5C1',    /* Platinum Silver (Accent) */
-                        'F5F5F5': '#F5F5F5',    /* Diamond White (Text Primary) */
-                        'B1B1B1': '#B1B1B1',    /* Pewter Gray (Subtext/Muted) */
-                        '0E5C4E': '#0E5C4E',    /* Emerald Green (Rarity Accent) */
-                        '81D8D0': '#81D8D0',    /* Tiffany Blue (Optional Accent) */
-                        '8B2E2E': '#8B2E2E',    /* Soft Garnet (Error/Warning) */
-                        '2A2A2A': '#2A2A2A',    /* Graphite Gray (Input/Dark Card) */
-                        /* Ivory Gradient Tones for CTA */
-                        'E6E2D3': '#E6E2D3',    /* Ivory Light */
-                        'D8CBAF': '#D8CBAF',    /* Ivory Dark (Muted Gold) */
-                        /* Aliases for easy Tailwind use */
+                        /* Dark Theme (Platinum) */
+                        '111111': '#111111', 
+                        'DAD5C1': '#DAD5C1', 
+                        'F5F5F5': '#F5F5F5', 
+                        'B1B1B1': '#B1B1B1', 
+                        '0E5C4E': '#0E5C4E', 
+                        '81D8D0': '#81D8D0', 
+                        '8B2E2E': '#8B2E2E', 
+                        '2A2A2A': '#2A2A2A', 
+                        'E6E2D3': '#E6E2D3', 
+                        'D8CBAF': '#D8CBAF', 
                         'primary-bg': '#111111',
                         'accent-platinum': '#DAD5C1',
                         'text-light': '#F5F5F5',
                         'card-bg': '#2A2A2A',
+                        
+                        /* Light Theme (Vibe Match) - Colors from old code */
+                        'light-bg': '#f7f3f1',
+                        'light-primary': '#ff5a5f',
+                        'light-secondary': '#333333',
+                        'light-card-bg': '#FFFFFF',
+                        'light-muted': '#737373',
                     },
                     fontFamily: {
                         'serif': ['Playfair Display', 'serif'],
                         'sans': ['Inter', 'sans-serif'],
                     },
-                    // FIX: Add custom line height to prevent text clipping on large Playfair Display font.
                     lineHeight: {
-                        'tighter-custom': '1.19', // 90% of the font size
+                        'tighter-custom': '1.19',
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="min-h-screen bg-primary-bg text-text-light">
+<body class="min-h-screen dark-theme" id="body-tag">
 
     <div id="app" class="max-w-4xl mx-auto w-full min-h-screen relative">
 
@@ -211,8 +372,19 @@
             <span id="cartCount" class="absolute -top-1 -right-1 bg-0E5C4E text-F5F5F5 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
         </button>
         
+        <div class="toggle-switch-container">
+            <div id="themeToggle" class="toggle-switch" onclick="toggleTheme()">
+                <svg class="toggle-icon sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <svg class="toggle-icon moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </div>
+        </div>
+
         <div id="startScreen" class="screen flex-col">
-            <h1 class="text-7xl md:text-8xl font-serif font-semibold mb-4 uppercase platinum-text-gradient leading-tighter-custom">EVOL JEWELS</h1>
+            <h1 id="startScreenTitle" class="text-7xl md:text-8xl font-serif font-semibold mb-4 uppercase platinum-text-gradient leading-tighter-custom">EVOL JEWELS</h1>
             <p class="text-2xl md:text-3xl font-sans font-light mb-12 text-B1B1B1">Your Personal Digital Stylist Kiosk</p>
             <button onclick="startQuiz()"
                 class="px-10 py-5 text-xl md:text-2xl font-sans rounded-xl primary-cta">
@@ -286,15 +458,15 @@
 
                     <div class="md:w-1/2 w-full">
                         
-                        <div id="recommendationCard" class="bg-2A2A2A p-6 md:p-10 rounded-2xl shadow-xl border-t-8 border-accent-platinum w-full mb-6">
-                            <p class="text-lg text-DAD5C1 mb-2 font-sans">Your style matches:</p>
+                        <div id="recommendationCard" class="card-bg p-6 md:p-10 rounded-2xl shadow-xl border-t-8 border-accent-platinum w-full mb-6">
+                            <p id="styleMatchText" class="text-lg text-DAD5C1 mb-2 font-sans">Your style matches:</p>
                             <h3 id="styleIcon" class="text-3xl md:text-5xl font-serif font-extrabold text-accent-platinum"></h3>
                             <p id="styleSubtitle" class="text-xl mt-4 text-F5F5F5 font-sans font-semibold"></p>
                             <p class="text-base mt-2 text-B1B1B1 font-sans">Find the perfect pieces that capture this iconic look.</p>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div id="celebrityPanel" class="bg-2A2A2A rounded-xl shadow-lg overflow-hidden border border-B1B1B1/30">
+                            <div id="celebrityPanel" class="card-bg rounded-xl shadow-lg overflow-hidden border border-B1B1B1/30">
                                 <div class="h-40 bg-111111 flex items-center justify-center text-text-light text-lg">
                                     <img id="celebImage" src="" alt="Celebrity Inspiration" class="w-full h-full object-cover opacity-80">
                                 </div>
@@ -304,7 +476,7 @@
                                 </div>
                             </div>
                             
-                            <div id="moviePanel" class="bg-2A2A2A rounded-xl shadow-lg overflow-hidden border border-B1B1B1/30">
+                            <div id="moviePanel" class="card-bg rounded-xl shadow-lg overflow-hidden border border-B1B1B1/30">
                                 <div class="h-40 bg-111111 flex items-center justify-center text-text-light text-lg">
                                     <img src="https://placehold.co/400x200/0E5C4E/F5F5F5?text=Movie+Inspo+Scene" alt="Movie Scene Reference" class="w-full h-full object-cover opacity-80">
                                 </div>
@@ -328,7 +500,7 @@
                         </button>
                     </div>
 
-                </div>	
+                </div> 
                 
                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 max-w-xl mx-auto mt-10">
                     <button onclick="showAllProducts()"
@@ -347,8 +519,8 @@
             <div class="w-full max-w-6xl mx-auto">
                 <h2 class="text-4xl md:text-5xl font-serif font-bold text-text-light text-center mb-8">All Evol Jewels Products</h2>
 
-                <div class="max-w-4xl mx-auto w-full mb-6 flex flex-wrap gap-4 items-center justify-between bg-2A2A2A p-4 rounded-xl shadow-md">
-                    <select id="filterCategory" onchange="filterAndSortProducts()" class="p-3 border border-111111 rounded-lg text-lg text-text-light bg-2A2A2A focus:ring-accent-platinum focus:border-accent-platinum">
+                <div class="max-w-4xl mx-auto w-full mb-6 flex flex-wrap gap-4 items-center justify-between card-bg p-4 rounded-xl shadow-md">
+                    <select id="filterCategory" onchange="filterAndSortProducts()" class="p-3 border border-111111 rounded-lg text-lg text-text-light card-bg focus:ring-accent-platinum focus:border-accent-platinum">
                         <option value="">All Categories</option>
                         <option value="Earring">Earrings</option>
                         <option value="Ring">Rings</option>
@@ -356,7 +528,7 @@
                         <option value="Bracelet">Bracelets</option>
                     </select>
 
-                    <select id="sortBy" onchange="filterAndSortProducts()" class="p-3 border border-111111 rounded-lg text-lg text-text-light bg-2A2A2A focus:ring-accent-platinum focus:border-accent-platinum">
+                    <select id="sortBy" onchange="filterAndSortProducts()" class="p-3 border border-111111 rounded-lg text-lg text-text-light card-bg focus:ring-accent-platinum focus:border-accent-platinum">
                         <option value="default">Default</option>
                         <option value="priceLow">Price: Low to High</option>
                         <option value="priceHigh">Price: High to Low</option>
@@ -381,10 +553,10 @@
                 <div id="cartItemsContainer" class="w-full space-y-4">
                 </div>
 
-                <div id="cartSummary" class="w-full mt-8 p-6 bg-2A2A2A rounded-xl shadow-xl border-t-4 border-accent-platinum">
+                <div id="cartSummary" class="w-full mt-8 p-6 card-bg rounded-xl shadow-xl border-t-4 border-accent-platinum">
                     <div class="flex justify-between items-center text-2xl font-serif font-bold mb-4">
                         <span>Total:</span>
-                        <span id="cartTotal" class="text-accent-platinum">₹0</span>
+                        <span id="cartTotal" class="text-accent-platinum font-sans font-medium total-price-font">₹0</span>
                     </div>
                     <button onclick="checkout()"
                         class="w-full py-4 text-xl font-sans rounded-xl shadow-lg primary-cta">
@@ -407,7 +579,7 @@
                     Scan the QR code to save your recommended products and unlock your special in-store offer.
                 </h3>
                 
-                <div id="qrCodeContainer" class="mt-8">
+                <div id="qrCodeContainer" class="mt-8 mx-auto">
                     <canvas id="qrCanvas"></canvas>
                 </div>
 
@@ -437,11 +609,11 @@
         </div>
         
         <div id="feedbackModal" class="fixed inset-0 bg-111111 bg-opacity-90 hidden flex items-center justify-center p-4 z-50">
-            <div class="bg-2A2A2A p-6 md:p-8 rounded-2xl shadow-2xl w-full max-w-xl text-center border border-DAD5C1/30">
+            <div class="card-bg p-6 md:p-8 rounded-2xl shadow-2xl w-full max-w-xl text-center border border-DAD5C1/30">
                 <h4 class="text-3xl font-serif font-bold mb-4 text-text-light">Virtual Try-On</h4>
                 <p id="modalProductName" class="text-xl text-accent-platinum font-sans font-semibold mb-6">Product Name Here</p>
 
-                <div class="h-64 bg-111111 border-4 border-dashed border-accent-platinum rounded-xl flex items-center justify-center mb-8 relative">
+                <div class="h-64 primary-bg border-4 border-dashed border-accent-platinum rounded-xl flex items-center justify-center mb-8 relative">
                     <span class="text-B1B1B1 text-lg font-sans">Simulated AR View: Item on Model</span>
                     <div id="emotionDetector" class="absolute top-4 left-4 bg-0E5C4E text-F5F5F5 text-sm font-bold px-3 py-1 rounded-full shadow-lg">
                         Detecting Engagement...
@@ -477,23 +649,95 @@
         const totalQuizSteps = 4;
         const quizAnswers = {};
         let vibeScore = 0;
-        const cart = []; // The actual cart storage
-        let recommendationOffset = 0; // Tracks which set of recommended products is currently displayed
-        let lastFilteredRecommendations = []; // Stores the full, sorted list of matches
+        const cart = []; 
+        let recommendationOffset = 0; 
+        let lastFilteredRecommendations = []; 
+        const body = document.getElementById('body-tag');
+        const themeToggleSwitch = document.getElementById('themeToggle');
+        const startScreenTitle = document.getElementById('startScreenTitle');
+
+        // --- Theme Management ---
+        function applyDarkTheme() {
+            body.classList.remove('light-theme');
+            body.classList.add('dark-theme');
+            themeToggleSwitch.classList.remove('toggled');
+            
+            // Apply Dark Theme specifics to title
+            startScreenTitle.textContent = "EVOL JEWELS";
+            // startScreenTitle.classList.remove('light-theme-title');
+            // startScreenTitle.classList.add('dark-theme-title');
+            startScreenTitle.className = 'text-7xl md:text-8xl font-serif font-semibold mb-4 uppercase platinum-text-gradient leading-tighter-custom';
+        }
+
+        function applyLightTheme() {
+            body.classList.remove('dark-theme');
+            body.classList.add('light-theme');
+            themeToggleSwitch.classList.add('toggled');
+            
+            // Apply Light Theme specifics to title
+            startScreenTitle.textContent = "EVOL JEWELS";
+            // startScreenTitle.classList.remove('dark-theme-title');
+            // startScreenTitle.classList.add('light-theme-title');
+            startScreenTitle.className = 'text-7xl md:text-7xl font-serif font-semibold mb-4 uppercase platinum-text-gradient leading-tighter-custom';
+        }
+        
+        // Initial application of classes to the title element
+        document.addEventListener('DOMContentLoaded', () => {
+            if (body.classList.contains('dark-theme')) {
+                startScreenTitle.classList.add('dark-theme-title');
+            } else {
+                startScreenTitle.classList.add('light-theme-title');
+            }
+        });
 
 
-        // --- Utility Functions ---
+        function toggleTheme() {
+            if (body.classList.contains('dark-theme')) {
+                applyLightTheme();
+                localStorage.setItem('theme', 'light');
+            } else {
+                applyDarkTheme();
+                localStorage.setItem('theme', 'dark');
+            }
+            updateLeadCaptureColors(); 
+            renderCart(); 
+            if (document.getElementById('resultScreen').style.display === 'flex') {
+                renderVibeMatch(quizAnswers);
+                const recommendations = lastFilteredRecommendations.slice(recommendationOffset - 4, recommendationOffset);
+                renderProducts(recommendations, 'productGrid');
+            }
+            if (document.getElementById('allProductsScreen').style.display === 'flex') {
+                filterAndSortProducts(); 
+            }
+        }
+
+        function updateLeadCaptureColors() {
+            const isDark = body.classList.contains('dark-theme');
+            const container = document.querySelector('#leadCaptureScreen > div');
+            const button = document.querySelector('#leadCaptureScreen button');
+
+            if (isDark) {
+                 // Dark mode styles (from current code's HTML)
+                container.className = 'bg-E6E2D3 p-6 md:p-12 rounded-3xl shadow-2xl max-w-lg w-full text-111111';
+                button.className = 'mt-6 w-full py-4 bg-111111 text-F5F5F5 text-xl font-sans font-medium rounded-xl shadow-lg hover:bg-2A2A2A transition duration-300 transform hover:scale-105 active:scale-100';
+            } else {
+                // Light mode styles (from old code's colors)
+                container.className = 'bg-light-card-bg p-6 md:p-12 rounded-3xl shadow-2xl max-w-lg w-full text-light-secondary';
+                button.className = 'mt-6 w-full py-4 bg-light-secondary text-light-card-bg text-xl font-sans font-medium rounded-xl shadow-lg hover:bg-light-primary transition duration-300 transform hover:scale-105 active:scale-100';
+            }
+        }
+        
+        // --- Utility Functions (Keep as is) ---
 
         function formatPrice(price) {
             return new Intl.NumberFormat('en-IN', {
                 style: 'currency',
                 currency: 'INR',
-                minimumFractionDigits: 0,	
+                minimumFractionDigits: 0, 
                 maximumFractionDigits: 0,
             }).format(price);
         }
 
-        // UPDATED: Use local file paths D:\media\image1.png to D:\media\image60.png
         function getImageUrl(index) {
             return `media\\image${index}.png`;
         }
@@ -503,7 +747,7 @@
         }
 
 
-        // --- Screen & Navigation Logic (Unchanged from prototype) ---
+        // --- Screen & Navigation Logic (Keep as is) ---
 
         function showScreen(screenId) {
             document.querySelectorAll('.screen').forEach(screen => {
@@ -511,7 +755,6 @@
             });
             document.getElementById(screenId).style.display = 'flex';
             
-            // Manage history
             if (screenId !== screenHistory[screenHistory.length - 1]) {
                 screenHistory.push(screenId);
             }
@@ -536,44 +779,36 @@
         }
 
         function goBack() {
-            // Check if we are in the quiz first
             if (screenHistory[screenHistory.length - 1] === 'quizScreen' && currentQuizStep > 1) {
                 handlePreviousQuizStep();
                 return;
             }
 
-            // Remove current screen from history
-            screenHistory.pop();	
+            screenHistory.pop(); 
             
             if (screenHistory.length >= 1) {
-                let previousScreenId = screenHistory.pop();	
+                let previousScreenId = screenHistory.pop(); 
                 
-                // Skip loading screen if navigating back from 'resultScreen'
                 if (previousScreenId === 'loadingScreen') {
                     previousScreenId = screenHistory.pop() || 'startScreen';
                 }
 
-                // Show the previous screen
-                showScreen(previousScreenId);	
+                showScreen(previousScreenId); 
             } else {
-                // If history is empty, go to startScreen
                 showScreen('startScreen');
-                currentQuizStep = 1; // Also reset quiz step
-                screenHistory.splice(0); // Clear history completely and start fresh
+                currentQuizStep = 1; 
+                screenHistory.splice(0); 
             }
         }
         
-        // FIX: Corrected quiz back navigation logic
         function handlePreviousQuizStep() {
             if (currentQuizStep > 1) {
                 document.getElementById(`q${currentQuizStep}`).classList.add('hidden');
                 currentQuizStep--;
                 
-                // Show the previous step's content
                 document.getElementById(`q${currentQuizStep}`).classList.remove('hidden');
                 updateProgress();
             } else {
-                // From Q1, go back to startScreen
                 showScreen('startScreen');
                 currentQuizStep = 1;
                 screenHistory.splice(1);
@@ -581,7 +816,7 @@
         }
 
 
-        // --- Cart Logic (Updated colors) ---
+        // --- Cart Logic (Uses dynamic colors based on current theme) ---
 
         function updateCartCount() {
             cartCountSpan.textContent = cart.length;
@@ -594,7 +829,6 @@
                 cart.push(product);
                 updateCartCount();
                 alert(`${product.name} added to cart!`);
-                console.log('Cart:', cart);
             }
         }
 
@@ -608,8 +842,15 @@
             const container = document.getElementById('cartItemsContainer');
             container.innerHTML = '';
             
+            const isDark = body.classList.contains('dark-theme');
+            const bgColor = isDark ? 'bg-2A2A2A' : 'bg-light-card-bg';
+            const textColor = isDark ? 'text-F5F5F5' : 'text-light-secondary';
+            const subTextColor = isDark ? 'text-B1B1B1' : 'text-light-muted';
+            const accentColor = isDark ? 'text-DAD5C1' : 'text-light-primary';
+            const removeColor = isDark ? 'text-8B2E2E' : 'text-red-500'; 
+
             if (cart.length === 0) {
-                container.innerHTML = '<p class="text-xl text-center text-B1B1B1 mt-10 font-sans">Your cart is empty. Time to find your vibe!</p>';
+                container.innerHTML = `<p class="text-xl text-center ${subTextColor} mt-10 font-sans">Your cart is empty. Time to find your vibe!</p>`;
                 document.getElementById('cartSummary').classList.add('hidden');
                 return;
             }
@@ -621,14 +862,14 @@
                 total += product.price;
 
                 const cardHtml = `
-                    <div class="flex items-center bg-2A2A2A p-4 rounded-xl shadow-md border-b border-DAD5C1/20">
-                        <img src="${product.imageUrl}" alt="${product.name}" class="w-20 h-20 object-cover rounded-lg mr-4 border border-111111">
+                    <div class="flex items-center ${bgColor} p-4 rounded-xl shadow-md border-b ${isDark ? 'border-DAD5C1/20' : 'border-gray-200'}">
+                        <img src="${product.imageUrl}" alt="${product.name}" class="w-20 h-20 object-cover rounded-lg mr-4 border ${isDark ? 'border-111111' : 'border-gray-300'}">
                         <div class="flex-1">
-                            <p class="font-bold text-lg text-F5F5F5 font-sans">${product.name}</p>
-                            <p class="text-sm text-B1B1B1 font-sans">${product.category} | ${product.collection || 'General'}</p>
-                            <p class="font-bold text-DAD5C1 mt-1 font-sans">${formatPrice(product.price)}</p>
+                            <p class="font-bold text-lg ${textColor} font-sans">${product.name}</p>
+                            <p class="text-sm ${subTextColor} font-sans">${product.category} | ${product.collection || 'General'}</p>
+                            <p class="font-bold ${accentColor} mt-1 font-sans">${formatPrice(product.price)}</p>
                         </div>
-                        <button onclick="removeCartItem(${index})" class="text-8B2E2E hover:text-8B2E2E/80 transition duration-200 ml-4">
+                        <button onclick="removeCartItem(${index})" class="${removeColor} hover:${removeColor}/80 transition duration-200 ml-4">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
@@ -649,8 +890,43 @@
         function checkout() {
             const finalTotal = document.getElementById('cartTotal').textContent;
             
-            // Mock Order ID generation (simple timestamp or random)
             const orderId = 'EV' + Math.floor(Math.random() * 100000000).toString().padStart(8, '0');
+            const isDark = body.classList.contains('dark-theme');
+
+            // Apply correct colors to the checkout screen before showing
+            const checkoutDiv = document.querySelector('#checkoutScreen > div');
+            const h2 = checkoutDiv.querySelector('h2');
+            const p2 = checkoutDiv.querySelectorAll('p')[1];
+            const p3 = checkoutDiv.querySelectorAll('p')[2];
+            const spanId = document.getElementById('checkoutOrderIdDisplay');
+            const totalDisplay = document.getElementById('checkoutTotalDisplay');
+
+            if (isDark) {
+                checkoutDiv.className = 'bg-E6E2D3 p-6 md:p-12 rounded-3xl shadow-2xl max-w-lg w-full text-111111';
+                h2.classList.remove('text-green-600');
+                h2.classList.add('text-0E5C4E');
+                p2.classList.remove('text-light-secondary');
+                p2.classList.add('text-111111');
+                p3.classList.remove('text-gray-700');
+                p3.classList.add('text-2A2A2A');
+                spanId.classList.remove('text-light-primary');
+                spanId.classList.add('text-000000');
+                totalDisplay.classList.remove('text-light-primary');
+                totalDisplay.classList.add('text-0E5C4E');
+            } else {
+                 checkoutDiv.className = 'bg-white p-6 md:p-12 rounded-3xl shadow-2xl max-w-lg w-full';
+                 h2.classList.remove('text-0E5C4E');
+                 h2.classList.add('text-green-600');
+                 p2.classList.remove('text-111111');
+                 p2.classList.add('text-light-secondary');
+                 p3.classList.remove('text-2A2A2A');
+                 p3.classList.add('text-gray-700');
+                 spanId.classList.remove('text-000000');
+                 spanId.classList.add('text-light-primary');
+                 totalDisplay.classList.remove('text-0E5C4E');
+                 totalDisplay.classList.add('text-light-primary');
+            }
+
 
             document.getElementById('checkoutTotalDisplay').textContent = `Total: ${finalTotal}`;
             document.getElementById('checkoutOrderIdDisplay').textContent = orderId;
@@ -662,7 +938,6 @@
         }
 
         function startNewSession() {
-            // Reset state
             quizAnswers.length = 0;
             vibeScore = 0;
             recommendationOffset = 0;
@@ -674,11 +949,11 @@
         }
 
 
-        // --- Quiz and Core Functions (Score-based Matching) (Unchanged from prototype) ---
+        // --- Quiz and Core Functions (Score-based Matching) (Keep as is) ---
         
         function startQuiz() {
             currentQuizStep = 1;
-            recommendationOffset = 0; // Reset recommendations when starting a new quiz
+            recommendationOffset = 0; 
             lastFilteredRecommendations = [];
             document.querySelectorAll('.quiz-option').forEach(btn => btn.classList.remove('selected'));
             document.querySelectorAll('.quiz-step').forEach(step => step.classList.add('hidden'));
@@ -718,13 +993,13 @@
                 document.getElementById(`q${currentQuizStep}`).classList.add('hidden');
                 showScreen('loadingScreen');
                 
-                recommendationOffset = 0;	
+                recommendationOffset = 0; 
 
                 setTimeout(() => {
                     lastFilteredRecommendations = getAllFilteredRecommendations(quizAnswers);
                     const recommendations = getNextRecommendedBatch();
 
-                    renderVibeMatch(quizAnswers);	
+                    renderVibeMatch(quizAnswers); 
                     renderProducts(recommendations, 'productGrid');
                     showScreen('resultScreen');
                 }, 1500);
@@ -741,16 +1016,46 @@
         };
 
         function renderVibeMatch(answers) {
-            // Use Q1 and Q3, which now map to Occasion and Style, to find the celebrity vibe
             const key = `${answers.q1}_${answers.q3}_${answers.q4}`;
             const match = vibeMatches[key] || vibeMatches['default'];
             document.getElementById('styleIcon').textContent = match.icon;
-            document.getElementById('styleSubtitle').textContent = match.subtitle;
             document.getElementById('celebImage').src = match.celebrityImage;
             document.getElementById('celebImage').alt = match.icon;
+            
+            const styleSubtitle = document.getElementById('styleSubtitle');
+            const styleMatchText = document.getElementById('styleMatchText');
+            const recommendationCard = document.getElementById('recommendationCard');
+            const isDark = body.classList.contains('dark-theme');
+
+            // 1. Update Subtitle Text & Color (text-F5F5F5 -> text-gray-700)
+            styleSubtitle.textContent = match.subtitle;
+            if (isDark) {
+                styleSubtitle.classList.remove('text-gray-700');
+                styleSubtitle.classList.add('text-F5F5F5', 'font-semibold');
+            } else {
+                styleSubtitle.classList.remove('text-F5F5F5');
+                styleSubtitle.classList.add('text-gray-700', 'font-semibold');
+            }
+
+            // 2. Update 'Your style matches:' color (text-DAD5C1 -> text-gray-600)
+            if (isDark) {
+                styleMatchText.classList.remove('text-gray-600');
+                styleMatchText.classList.add('text-DAD5C1');
+            } else {
+                styleMatchText.classList.remove('text-DAD5C1');
+                styleMatchText.classList.add('text-gray-600');
+            }
+
+            // 3. Update card background based on theme for result screen
+            if (isDark) {
+                recommendationCard.classList.add('bg-2A2A2A');
+                recommendationCard.classList.remove('bg-light-card-bg');
+            } else {
+                recommendationCard.classList.add('bg-light-card-bg');
+                recommendationCard.classList.remove('bg-2A2A2A');
+            }
         }
         
-        // Score-based Recommendation Logic
         function getAllFilteredRecommendations(answers) {
             const primaryCategory = answers.q2;
             const occasion = answers.q1;
@@ -762,37 +1067,28 @@
                 const productCategory = product.category === 'Pendant' ? 'Necklace' : product.category;
                 const productCollection = product.collection || '';
                 
-                // 1. Primary Category Match (Highest weight: 3)
                 if (productCategory === primaryCategory) {
-                    score += 3;	
-                }	
-
-                // 2. Metal Match (Weight: 2)
+                    score += 3; 
+                } 
                 if (product.tags.includes(metal)) {
                     score += 2;
                 }
-                
-                // 3. Occasion Match (Weight: 1.5)
                 if (product.tags.includes(occasion)) {
                     score += 1.5;
                 }
-
-                // 4. Style Match (Weight: 1)
                 if (productCollection.includes(outfitStyle) || product.tags.includes(outfitStyle)) {
                     score += 1;
                 }
                 
-                // 5. Price Proximity to mid-range (Weight: 0.5 max)
                 const PRICE_TARGET = 100000;
                 const price_diff = Math.abs(product.price - PRICE_TARGET);
-                const price_bonus = 0.5 * (1 - Math.min(price_diff / 500000, 1));	
+                const price_bonus = 0.5 * (1 - Math.min(price_diff / 500000, 1)); 
                 score += price_bonus;
 
                 return { ...product, score };
             });
 
-            // Sort by score (highest first)
-            scoredRecommendations.sort((a, b) => b.score - a.score);	
+            scoredRecommendations.sort((a, b) => b.score - a.score); 
 
             return scoredRecommendations;
         }
@@ -800,9 +1096,8 @@
         function getNextRecommendedBatch() {
             const batchSize = 4;
             
-            // Use the globally stored filtered and sorted list
             const recommendations = lastFilteredRecommendations.slice(recommendationOffset, recommendationOffset + batchSize);
-            recommendationOffset += recommendations.length; // Update offset for the next batch
+            recommendationOffset += recommendations.length; 
             
             return recommendations;
         }
@@ -815,39 +1110,46 @@
                 return;
             }
 
-            // Clear the existing grid and render the new batch
             document.getElementById('productGrid').innerHTML = '';
             renderProducts(nextRecommendations, 'productGrid');
             
-            // Scroll to the products to show the change
             document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' });
         }
         
-        // --- renderProducts: Displays products (with new styles) ---
+        // --- renderProducts: Displays products (uses dynamic classes) ---
         function renderProducts(productsToDisplay, gridId) {
             const productGrid = document.getElementById(gridId);
-            
-            productGrid.innerHTML = '';	
+            productGrid.innerHTML = ''; 
+
+            const isDark = body.classList.contains('dark-theme');
+            const cardBg = isDark ? 'bg-2A2A2A/50' : 'bg-light-card-bg';
+            const shadowHover = isDark ? 'hover:shadow-DAD5C1/30' : 'hover:shadow-lg';
+            const cardBorder = isDark ? 'border-B1B1B1/10' : 'border-gray-200';
+            const textStrong = isDark ? 'text-F5F5F5' : 'text-gray-800';
+            const textMuted = isDark ? 'text-B1B1B1' : 'text-gray-500';
+            const textAccent = isDark ? 'text-DAD5C1' : 'text-light-primary';
+            const btnBg = isDark ? 'bg-111111' : 'bg-gray-300';
+            const btnText = isDark ? 'text-F5F5F5' : 'text-light-secondary';
+            const btnHoverBg = isDark ? 'hover:bg-2A2A2A' : 'hover:bg-gray-400';
 
             productsToDisplay.forEach((product) => {
                 const formattedPrice = formatPrice(product.price);
                 const category = product.category === 'Pendant' ? 'Necklace' : product.category;
                 const collectionName = product.collection || 'General Line';
-                // Use Pewter Gray for muted details
-                const details = `<p class="text-xs text-B1B1B1 mt-1 font-sans">${category} | ${collectionName}</p>`;
+                const details = `<p class="text-xs ${textMuted} mt-1 font-sans">${category} | ${collectionName}</p>`;
 
                 const cardHtml = `
-                    <div class="product-card bg-2A2A2A/50 rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-DAD5C1/30 hover:shadow-2xl border border-B1B1B1/10">
-                        <div class="h-40 bg-111111 flex items-center justify-center text-B1B1B1 text-lg">
-                            <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/8B2E2E/F5F5F5?text=Image+${product.id}+Error'; this.style.opacity='0.7'">
+                    <div class="product-card ${cardBg} rounded-xl shadow-lg overflow-hidden transition duration-300 ${shadowHover} hover:shadow-2xl border ${cardBorder}">
+                        <div class="h-40 ${isDark ? 'bg-111111' : 'bg-gray-200'} flex items-center justify-center ${textMuted} text-lg">
+                            <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/${isDark ? '8B2E2E/F5F5F5' : 'FF0000/ffffff'}?text=Image+${product.id}+Error'; this.style.opacity='0.7'">
                         </div>
                         <div class="p-4">
-                            <p class="font-serif font-semibold text-base text-F5F5F5 h-12 overflow-hidden">${product.name}</p>	
+                            <p class="font-serif font-semibold text-base ${textStrong} h-12 overflow-hidden">${product.name}</p> 
                             ${details}
-                            <p class="font-sans font-bold text-lg text-DAD5C1 mt-2">${formattedPrice}</p>
+                            <p class="font-sans font-bold text-lg ${textAccent} mt-2">${formattedPrice}</p>
                             
                             <div class="flex justify-center mt-2">
-                                <button onclick="showFeedbackModal('${product.name}', ${product.id})" class="flex-1 py-2 bg-111111 text-F5F5F5 text-sm font-sans rounded-lg hover:bg-2A2A2A transition duration-200">
+                                <button onclick="showFeedbackModal('${product.name}', ${product.id})" class="flex-1 py-2 ${btnBg} ${btnText} text-sm font-sans rounded-lg ${btnHoverBg} transition duration-200">
                                     Try On & Rate
                                 </button>
                             </div>
@@ -859,8 +1161,8 @@
         }
         
         function showAllProducts() {
-            recommendationOffset = 0;	
-            filterAndSortProducts();	
+            recommendationOffset = 0; 
+            filterAndSortProducts(); 
             showScreen('allProductsScreen');
         }
 
@@ -868,7 +1170,15 @@
             let filteredProducts = [...productData];
             const categoryFilter = document.getElementById('filterCategory').value;
             const sortBy = document.getElementById('sortBy').value;
+            const isDark = body.classList.contains('dark-theme');
+            const selectBg = isDark ? 'bg-2A2A2A' : 'bg-light-card-bg';
 
+            // Update select background colors dynamically
+            document.getElementById('filterCategory').classList.add(selectBg);
+            document.getElementById('filterCategory').classList.remove(isDark ? 'bg-light-card-bg' : 'bg-2A2A2A');
+            document.getElementById('sortBy').classList.add(selectBg);
+            document.getElementById('sortBy').classList.remove(isDark ? 'bg-light-card-bg' : 'bg-2A2A2A');
+            
             if (categoryFilter) {
                 filteredProducts = filteredProducts.filter(product => {
                     const productCategory = product.category === 'Pendant' ? 'Necklace' : product.category;
@@ -886,16 +1196,32 @@
             renderProducts(filteredProducts, 'allProductGrid');
         }
 
-        // --- Try-On and Feedback Logic (Updated colors) ---
+        // --- Try-On and Feedback Logic (Uses dynamic classes) ---
         function showFeedbackModal(productName, productId) {
+            const isDark = body.classList.contains('dark-theme');
+            const modal = document.getElementById('feedbackModal');
+            const modalContent = modal.querySelector('div');
+            const emotionDetector = document.getElementById('emotionDetector');
+            
+            // Set modal colors
+            modal.style.backgroundColor = isDark ? 'rgba(17, 17, 17, 0.9)' : 'rgba(0, 0, 0, 0.7)';
+            modalContent.className = isDark ? 'card-bg p-6 md:p-8 rounded-2xl shadow-2xl w-full max-w-xl text-center border border-DAD5C1/30' : 'bg-light-card-bg p-6 md:p-8 rounded-2xl shadow-2xl w-full max-w-xl text-center border border-gray-100';
+            
+            // Set AR view colors
+            const arView = modalContent.querySelector('.h-64');
+            arView.className = `h-64 ${isDark ? 'bg-111111' : 'bg-gray-100'} border-4 border-dashed ${isDark ? 'border-accent-platinum' : 'border-light-primary'} rounded-xl flex items-center justify-center mb-8 relative`;
+
+
             document.getElementById('modalProductName').textContent = productName;
-            document.getElementById('emotionDetector').textContent = "Detecting Engagement...";
-            document.getElementById('feedbackModal').setAttribute('data-product-id', productId);	
-            document.getElementById('feedbackModal').classList.remove('hidden');
-            document.getElementById('feedbackModal').classList.add('flex');
+            emotionDetector.textContent = "Detecting Engagement...";
+            modal.setAttribute('data-product-id', productId); 
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
 
             setTimeout(() => {
-                document.getElementById('emotionDetector').textContent = "Engagement: Confirmed (Active View)";
+                emotionDetector.textContent = "Engagement: Confirmed (Active View)";
+                // Dynamic emotion detector color
+                emotionDetector.className = `absolute top-4 left-4 ${isDark ? 'bg-0E5C4E text-F5F5F5' : 'bg-light-primary text-white'} text-sm font-bold px-3 py-1 rounded-full shadow-lg`;
             }, 1000);
         }
 
@@ -908,20 +1234,23 @@
             const productId = parseInt(document.getElementById('feedbackModal').getAttribute('data-product-id'));
 
             if (action === 'love') {
-                vibeScore += 1;	
-                addToCart(productId); // User confirmed they liked it -> ADD TO CART
+                vibeScore += 1; 
+                addToCart(productId); 
                 console.log(`User confirmed Vibe and added product ID ${productId}. Vibe Score: ${vibeScore}`);
             } else if (action === 'dislike') {
-                vibeScore = Math.max(0, vibeScore - 1);	
+                vibeScore = Math.max(0, vibeScore - 1); 
                 console.log(`User requested refinement for product ID ${productId}. Vibe Score: ${vibeScore}`);
             }
             hideFeedbackModal();
-            showScreen('resultScreen'); // Return to results
+            showScreen('resultScreen');
         }
 
         function showLeadCaptureScreen() {
             const profileUrl = `https://evoljewels.com/saved-look?vibe=${btoa(JSON.stringify(quizAnswers))}&match=true`;
             
+            // Re-call color update before showing
+            updateLeadCaptureColors();
+
             QRCode.toCanvas(document.getElementById('qrCanvas'), profileUrl, {
                 width: 200,
                 margin: 2
@@ -1000,9 +1329,16 @@
         // --- Initialization ---
 
         document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                applyLightTheme();
+            } else {
+                applyDarkTheme();
+            }
+
             showScreen('startScreen');
-            filterAndSortProducts();
-            updateCartCount();	
+            filterAndSortProducts(); 
+            updateCartCount(); 
         });
     </script>
 </body>
