@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evol Jewels Kiosk: Timeless Brilliance - Platinum Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <style>
+        /* Base Styles: Deep Charcoal Background, Diamond White Text */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111111; /* Deep Charcoal */
+            color: #F5F5F5; /* Diamond White */
+        }
+
+        /* Ensure all screens take full viewport height and center content */
+        .screen {
+            display: none;
+            min-height: 100vh;
+            padding: 1rem;
+            align-items: center; /* Center horizontally in flex column */
+            justify-content: center; /* Center vertically */
+            text-align: center;
+        }
+        
+        /* Custom Text Gradient for Platinum Look (applied to Playfair headings) */
+        .platinum-text-gradient {
+            background: linear-gradient(90deg, #E9E4D0 0%, #C8BCA0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 6px rgba(255, 255, 255, 0.08); /* Soft Embossing */
+            letter-spacing: 0.5px;
+        }
+
+        /* Primary CTA Button Style - Ivory Gradient */
+        .primary-cta {
+            /* Ivory Gradient background, Deep Charcoal text, Platinum border/shadow */
+            background: linear-gradient(145deg, #E8E4D8, #CFC6B0);
+            color: #111111;
+            border: 0.5px solid #D8CBAF; 
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); 
+            transition: all 0.3s ease-in-out;
+            font-weight: 500;
+        }
+        .primary-cta:hover {
+            background: linear-gradient(145deg, #F5F2E8, #D8CBAF);
+            transform: scale(1.02);
+        }
+
+        /* Secondary/Outline CTA Button Style - Platinum Text/Border */
+.secondary-cta {
+    border: 1px solid #DAD5C1;
+    color: #DAD5C1;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+}
+.secondary-cta:hover {
+    background-color: #DAD5C1;
+    color: #111111;
+}
+
+
+        .tertiary-cta {
+    background-color: #2A2A2A;
+    color: #F5F5F5;
+    border: none;
+    transition: all 0.3s;
+}
+.tertiary-cta:hover {
+    background-color: #111111;
+}
+
+
+        .quiz-option {
+    transition: all 0.2s;
+    cursor: pointer;
+    background-color: rgba(42, 42, 42, 0.5);
+    color: #F5F5F5;
+    border: 2px solid #111111;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    transform: scale(1);
+}
+.quiz-option:hover {
+    border-color: #DAD5C1;
+    transform: scale(1.02);
+}
+.quiz-option.selected {
+    background-color: #DAD5C1;
+    color: #111111;
+    border-color: #DAD5C1;
+    box-shadow: 0 0 10px rgba(218, 213, 193, 0.3);
+    transform: scale(1.02);
+    font-weight: 600;
+}
+
+
+        /* The QR Code container - Ivory background for scanning */
+        #qrCodeContainer {
+            padding: 20px;
+            background: #E6E2D3; /* Ivory */
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        /* Fixed positioning for Nav - Full Opacity (as requested) */
+        .back-btn {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    background-color: #2A2A2A;
+    color: #F5F5F5;
+    padding: 0.75rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    transition: all 0.15s ease-in-out;
+    z-index: 20;
+}
+.back-btn:hover {
+    background-color: #111111;
+}
+
+.cart-icon-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: #DAD5C1;
+    color: #111111;
+    padding: 0.75rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.15s ease-in-out;
+    z-index: 20;
+}
+.cart-icon-btn:hover {
+    background-color: #D8CBAF;
+}
+
+
+        /* Spinner for Loading Screen */
+        .spinner {
+            border: 8px solid rgba(245, 245, 245, 0.3); /* Diamond White opacity */
+            border-top: 8px solid #DAD5C1; /* Platinum Silver Accent */
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        /* New Platinum Palette */
+                        '111111': '#111111',    /* Deep Charcoal (Background) */
+                        'DAD5C1': '#DAD5C1',    /* Platinum Silver (Accent) */
+                        'F5F5F5': '#F5F5F5',    /* Diamond White (Text Primary) */
+                        'B1B1B1': '#B1B1B1',    /* Pewter Gray (Subtext/Muted) */
+                        '0E5C4E': '#0E5C4E',    /* Emerald Green (Rarity Accent) */
+                        '81D8D0': '#81D8D0',    /* Tiffany Blue (Optional Accent) */
+                        '8B2E2E': '#8B2E2E',    /* Soft Garnet (Error/Warning) */
+                        '2A2A2A': '#2A2A2A',    /* Graphite Gray (Input/Dark Card) */
+                        /* Ivory Gradient Tones for CTA */
+                        'E6E2D3': '#E6E2D3',    /* Ivory Light */
+                        'D8CBAF': '#D8CBAF',    /* Ivory Dark (Muted Gold) */
+                        /* Aliases for easy Tailwind use */
+                        'primary-bg': '#111111',
+                        'accent-platinum': '#DAD5C1',
+                        'text-light': '#F5F5F5',
+                        'card-bg': '#2A2A2A',
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    // FIX: Add custom line height to prevent text clipping on large Playfair Display font.
+                    lineHeight: {
+                        'tighter-custom': '1.19', // 90% of the font size
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-primary-bg text-text-light">
+
+    <div id="app" class="max-w-4xl mx-auto w-full min-h-screen relative">
+
+        <button onclick="goBack()" id="backButton" class="back-btn hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            <span class="font-sans font-medium">Back</span>
+        </button>
+        
+        <button onclick="showCartScreen()" id="cartIcon" class="cart-icon-btn hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-0E5C4E text-F5F5F5 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+        </button>
+        
+        <div id="startScreen" class="screen flex-col">
+            <h1 class="text-7xl md:text-8xl font-serif font-semibold mb-4 uppercase platinum-text-gradient leading-tighter-custom">EVOL JEWELS</h1>
+            <p class="text-2xl md:text-3xl font-sans font-light mb-12 text-B1B1B1">Your Personal Digital Stylist Kiosk</p>
+            <button onclick="startQuiz()"
+                class="px-10 py-5 text-xl md:text-2xl font-sans rounded-xl primary-cta">
+                Start Your Vibe Quiz
+            </button>
+            <div class="mt-16 text-lg text-B1B1B1 font-sans">Tap to unlock your personal collection match.</div>
+        </div>
+
+        <div id="quizScreen" class="screen flex-col">
+            <div class="w-full max-w-2xl mx-auto">
+                <h2 id="quizTitle" class="text-4xl md:text-5xl font-serif font-semibold text-text-light mb-10 text-center">Let's find your perfect style...</h2>
+
+                <div id="quizContainer" class="w-full">
+                    <div id="q1" class="quiz-step">
+                        <p class="text-xl md:text-3xl font-sans font-semibold mb-6 text-center text-accent-platinum">Q1. What's the occasion today?</p>
+                        <div class="space-y-4 md:space-y-6">
+                            <button data-answer="Casual" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Casual Day Out</button>
+                            <button data-answer="Work" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Professional Setting</button>
+                            <button data-answer="Party/Celebration" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Evening/Party</button>
+                        </div>
+                    </div>
+
+                    <div id="q2" class="quiz-step hidden">
+                        <p id="q2_main_text" class="text-xl md:text-3xl font-sans font-semibold mb-6 text-center text-accent-platinum">
+                            Q2. Which accessory type is your focus?
+                        </p>
+                        <div id="q2a" class="space-y-4 md:space-y-6">
+                            <button data-answer="Necklace" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Necklace/Pendant</button>
+                            <button data-answer="Ring" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Ring</button>
+                            <button data-answer="Earring" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Earring</button>
+                            <button data-answer="Bracelet" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Bracelet</button>
+                        </div>
+                    </div>
+
+                    <div id="q3" class="quiz-step hidden">
+                        <p class="text-xl md:text-3xl font-sans font-semibold mb-6 text-center text-accent-platinum">Q3. Pick an outfit style that speaks to your soul.</p>
+                        <div class="space-y-4 md:space-y-6">
+                            <button data-answer="Classic" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Classic (LBD, Elegant)</button>
+                            <button data-answer="Modern" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Modern (Power Suit, Geometric)</button>
+                            <button data-answer="Relaxed" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Relaxed (Denim, Layered)</button>
+                        </div>
+                    </div>
+                    
+                    <div id="q4" class="quiz-step hidden">
+                        <p class="text-xl md:text-3xl font-sans font-semibold mb-6 text-center text-accent-platinum">Q4. Which type of metal finish do you prefer?</p>
+                        <div class="space-y-4 md:space-y-6">
+                            <button data-answer="Polished Gold" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Polished Gold</button>
+                            <button data-answer="Matte Silver" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Matte Silver</button>
+                            <button data-answer="Mixed Metals" class="quiz-option w-full py-4 rounded-xl text-xl md:text-2xl font-sans">Mixed Metals</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="mt-6 text-lg text-B1B1B1 font-sans">
+                <span id="quizProgress">Step 1 of 4</span>
+            </div>
+        </div>
+
+        <div id="loadingScreen" class="screen flex-col">
+            <div class="spinner mb-6"></div>
+            <p class="text-2xl md:text-4xl font-serif font-semibold text-text-light">Matching your vibe...</p>
+            <p class="text-lg md:text-xl mt-2 text-B1B1B1 font-sans">Analyzing style cues for the perfect match.</p>
+        </div>
+
+        <div id="resultScreen" class="screen flex-col">
+            <div class="w-full max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-text-light text-center mb-8">Your Vibe Match is Ready!</h2>
+
+                <div class="w-full flex flex-col md:flex-row md:space-x-8 items-start">
+
+                    <div class="md:w-1/2 w-full">
+                        
+                        <div id="recommendationCard" class="bg-2A2A2A p-6 md:p-10 rounded-2xl shadow-xl border-t-8 border-accent-platinum w-full mb-6">
+                            <p class="text-lg text-DAD5C1 mb-2 font-sans">Your style matches:</p>
+                            <h3 id="styleIcon" class="text-3xl md:text-5xl font-serif font-extrabold text-accent-platinum"></h3>
+                            <p id="styleSubtitle" class="text-xl mt-4 text-F5F5F5 font-sans font-semibold"></p>
+                            <p class="text-base mt-2 text-B1B1B1 font-sans">Find the perfect pieces that capture this iconic look.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div id="celebrityPanel" class="bg-2A2A2A rounded-xl shadow-lg overflow-hidden border border-B1B1B1/30">
+                                <div class="h-40 bg-111111 flex items-center justify-center text-text-light text-lg">
+                                    <img id="celebImage" src="" alt="Celebrity Inspiration" class="w-full h-full object-cover opacity-80">
+                                </div>
+                                <div class="p-4 text-center">
+                                    <p class="font-bold text-sm text-B1B1B1 font-sans">Celebrity Vibe</p>
+                                <p class="text-lg font-semibold text-text-light font-sans">Iconic Jewelry Match</p>
+                                </div>
+                            </div>
+                            
+                            <div id="moviePanel" class="bg-2A2A2A rounded-xl shadow-lg overflow-hidden border border-B1B1B1/30">
+                                <div class="h-40 bg-111111 flex items-center justify-center text-text-light text-lg">
+                                    <img src="https://placehold.co/400x200/0E5C4E/F5F5F5?text=Movie+Inspo+Scene" alt="Movie Scene Reference" class="w-full h-full object-cover opacity-80">
+                                </div>
+                                <div class="p-4 text-center">
+                                    <p class="font-bold text-sm text-B1B1B1 font-sans">Collection Hint</p>
+                                    <p class="text-lg font-semibold text-text-light font-sans">Geometric & Classic pieces</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:w-1/2 w-full mt-8 md:mt-0">
+                        <h3 class="text-2xl md:text-3xl font-serif font-semibold mb-6 text-center md:text-left text-text-light">Recommended Products</h3>
+                        
+                        <div id="productGrid" class="grid grid-cols-2 gap-4 md:gap-6">
+                        </div>
+                        
+                        <button onclick="showMoreRecommendations()"
+                            class="mt-6 w-full py-3 text-lg font-sans rounded-xl shadow-md secondary-cta">
+                            Refine & Show More Vibe Matches
+                        </button>
+                    </div>
+
+                </div>	
+                
+                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 max-w-xl mx-auto mt-10">
+                    <button onclick="showAllProducts()"
+                        class="flex-1 py-4 text-xl font-sans rounded-xl shadow-lg secondary-cta">
+                        Browse All Products
+                    </button>
+                    <button onclick="showLeadCaptureScreen()"
+                        class="flex-1 py-4 text-xl font-sans rounded-xl shadow-lg primary-cta">
+                        Save Look to Phone & Offer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="allProductsScreen" class="screen flex-col">
+            <div class="w-full max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-text-light text-center mb-8">All Evol Jewels Products</h2>
+
+                <div class="max-w-4xl mx-auto w-full mb-6 flex flex-wrap gap-4 items-center justify-between bg-2A2A2A p-4 rounded-xl shadow-md">
+                    <select id="filterCategory" onchange="filterAndSortProducts()" class="p-3 border border-111111 rounded-lg text-lg text-text-light bg-2A2A2A focus:ring-accent-platinum focus:border-accent-platinum">
+                        <option value="">All Categories</option>
+                        <option value="Earring">Earrings</option>
+                        <option value="Ring">Rings</option>
+                        <option value="Necklace">Necklaces/Pendants</option>
+                        <option value="Bracelet">Bracelets</option>
+                    </select>
+
+                    <select id="sortBy" onchange="filterAndSortProducts()" class="p-3 border border-111111 rounded-lg text-lg text-text-light bg-2A2A2A focus:ring-accent-platinum focus:border-accent-platinum">
+                        <option value="default">Default</option>
+                        <option value="priceLow">Price: Low to High</option>
+                        <option value="priceHigh">Price: High to Low</option>
+                        <option value="nameAsc">Name: A-Z</option>
+                    </select>
+                </div>
+
+                <div id="allProductGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full">
+                </div>
+
+                <button onclick="showScreen('resultScreen')"
+                    class="mt-10 w-full max-w-sm mx-auto block py-4 text-xl font-sans rounded-xl shadow-lg primary-cta">
+                    &larr; Back to My Vibe Match
+                </button>
+            </div>
+        </div>
+
+        <div id="cartScreen" class="screen flex-col">
+            <div class="w-full max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-text-light text-center mb-8">Your Shopping Cart</h2>
+            
+                <div id="cartItemsContainer" class="w-full space-y-4">
+                </div>
+
+                <div id="cartSummary" class="w-full mt-8 p-6 bg-2A2A2A rounded-xl shadow-xl border-t-4 border-accent-platinum">
+                    <div class="flex justify-between items-center text-2xl font-serif font-bold mb-4">
+                        <span>Total:</span>
+                        <span id="cartTotal" class="text-accent-platinum">₹0</span>
+                    </div>
+                    <button onclick="checkout()"
+                        class="w-full py-4 text-xl font-sans rounded-xl shadow-lg primary-cta">
+                        Proceed to Checkout
+                    </button>
+                </div>
+
+                <button onclick="goBack()"
+                    class="mt-8 w-full max-w-xs mx-auto block py-3 text-B1B1B1 text-lg font-sans hover:text-F5F5F5 transition duration-300">
+                    &larr; Continue Shopping
+                </button>
+            </div>
+        </div>
+
+
+        <div id="leadCaptureScreen" class="screen flex-col">
+            <div class="bg-E6E2D3 p-6 md:p-12 rounded-3xl shadow-2xl max-w-lg w-full text-111111">
+                <p class="text-3xl md:text-5xl font-serif font-extrabold text-111111 mb-4">Save Your Look!</p>
+                <h3 class="text-xl md:text-2xl font-sans font-semibold text-111111 mb-8 leading-tight">
+                    Scan the QR code to save your recommended products and unlock your special in-store offer.
+                </h3>
+                
+                <div id="qrCodeContainer" class="mt-8">
+                    <canvas id="qrCanvas"></canvas>
+                </div>
+
+                <p class="mt-8 text-sm text-B1B1B1 font-sans">Scan this code with your phone camera now!</p>
+                <button onclick="showScreen('resultScreen')"
+                    class="mt-6 w-full py-4 bg-111111 text-F5F5F5 text-xl font-sans font-medium rounded-xl shadow-lg hover:bg-2A2A2A transition duration-300 transform hover:scale-105 active:scale-100">
+                    Done Scanning / Back to Products
+                </button>
+            </div>
+        </div>
+        
+        <div id="checkoutScreen" class="screen flex-col">
+            <div class="bg-E6E2D3 p-6 md:p-12 rounded-3xl shadow-2xl max-w-lg w-full text-111111">
+                <h2 class="text-5xl font-serif font-extrabold text-0E5C4E mb-4">Success!</h2> 
+                <p class="text-2xl font-sans font-semibold text-111111 mb-8">Your Order is Placed In-Store.</p>
+                <p class="text-lg text-2A2A2A mb-4 font-sans">A staff member has been notified and will prepare your selections.</p>
+                
+                <p class="text-lg font-bold text-2A2A2A mb-2 font-sans">Order ID: <span id="checkoutOrderIdDisplay" class="text-000000"></span></p>
+
+                <p class="text-xl font-bold text-0E5C4E font-sans" id="checkoutTotalDisplay"></p>
+                
+                <button onclick="startNewSession()"
+                    class="mt-8 w-full py-4 text-xl font-sans rounded-xl shadow-lg primary-cta">
+                    Start a New Session
+                </button>
+            </div>
+        </div>
+        
+        <div id="feedbackModal" class="fixed inset-0 bg-111111 bg-opacity-90 hidden flex items-center justify-center p-4 z-50">
+            <div class="bg-2A2A2A p-6 md:p-8 rounded-2xl shadow-2xl w-full max-w-xl text-center border border-DAD5C1/30">
+                <h4 class="text-3xl font-serif font-bold mb-4 text-text-light">Virtual Try-On</h4>
+                <p id="modalProductName" class="text-xl text-accent-platinum font-sans font-semibold mb-6">Product Name Here</p>
+
+                <div class="h-64 bg-111111 border-4 border-dashed border-accent-platinum rounded-xl flex items-center justify-center mb-8 relative">
+                    <span class="text-B1B1B1 text-lg font-sans">Simulated AR View: Item on Model</span>
+                    <div id="emotionDetector" class="absolute top-4 left-4 bg-0E5C4E text-F5F5F5 text-sm font-bold px-3 py-1 rounded-full shadow-lg">
+                        Detecting Engagement...
+                    </div>
+                </div>
+
+                <div class="flex space-x-4">
+                    <button onclick="handleFeedback('love')"
+                        class="flex-1 py-4 text-lg font-sans rounded-xl shadow-md primary-cta">
+                        Keep This Vibe (Add to Cart)
+                    </button>
+                    <button onclick="handleFeedback('dislike')"
+                        class="flex-1 py-4 text-lg font-sans rounded-xl shadow-md tertiary-cta">
+                        Refine Look (Try Again)
+                    </button>
+                </div>
+
+               <button onclick="hideFeedbackModal()"
+                    class="mt-4 w-full py-2 text-B1B1B1 text-sm font-sans hover:text-F5F5F5 transition duration-200">
+                    Cancel / Back to Looks
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Global State Variables ---
+        const screenHistory = ['startScreen'];
+        const backButton = document.getElementById('backButton');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartCountSpan = document.getElementById('cartCount');
+        let currentQuizStep = 1;
+        const totalQuizSteps = 4;
+        const quizAnswers = {};
+        let vibeScore = 0;
+        const cart = []; // The actual cart storage
+        let recommendationOffset = 0; // Tracks which set of recommended products is currently displayed
+        let lastFilteredRecommendations = []; // Stores the full, sorted list of matches
+
+
+        // --- Utility Functions ---
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                minimumFractionDigits: 0,	
+                maximumFractionDigits: 0,
+            }).format(price);
+        }
+
+        // UPDATED: Use local file paths D:\media\image1.png to D:\media\image60.png
+        function getImageUrl(index) {
+            return `media\\image${index}.png`;
+        }
+        
+        function getProductById(id) {
+            return productData.find(p => p.id === id);
+        }
+
+
+        // --- Screen & Navigation Logic (Unchanged from prototype) ---
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            document.getElementById(screenId).style.display = 'flex';
+            
+            // Manage history
+            if (screenId !== screenHistory[screenHistory.length - 1]) {
+                screenHistory.push(screenId);
+            }
+            
+            updateNavigationVisibility(screenId);
+        }
+        
+        function updateNavigationVisibility(currentScreenId) {
+            const screensWithNav = ['quizScreen', 'resultScreen', 'allProductsScreen', 'cartScreen'];
+
+            if (currentScreenId === 'startScreen' || currentScreenId === 'loadingScreen' || currentScreenId === 'checkoutScreen') {
+                backButton.classList.add('hidden');
+            } else {
+                backButton.classList.remove('hidden');
+            }
+
+            if (screensWithNav.includes(currentScreenId)) {
+                cartIcon.classList.remove('hidden');
+            } else {
+                cartIcon.classList.add('hidden');
+            }
+        }
+
+        function goBack() {
+            // Check if we are in the quiz first
+            if (screenHistory[screenHistory.length - 1] === 'quizScreen' && currentQuizStep > 1) {
+                handlePreviousQuizStep();
+                return;
+            }
+
+            // Remove current screen from history
+            screenHistory.pop();	
+            
+            if (screenHistory.length >= 1) {
+                let previousScreenId = screenHistory.pop();	
+                
+                // Skip loading screen if navigating back from 'resultScreen'
+                if (previousScreenId === 'loadingScreen') {
+                    previousScreenId = screenHistory.pop() || 'startScreen';
+                }
+
+                // Show the previous screen
+                showScreen(previousScreenId);	
+            } else {
+                // If history is empty, go to startScreen
+                showScreen('startScreen');
+                currentQuizStep = 1; // Also reset quiz step
+                screenHistory.splice(0); // Clear history completely and start fresh
+            }
+        }
+        
+        // FIX: Corrected quiz back navigation logic
+        function handlePreviousQuizStep() {
+            if (currentQuizStep > 1) {
+                document.getElementById(`q${currentQuizStep}`).classList.add('hidden');
+                currentQuizStep--;
+                
+                // Show the previous step's content
+                document.getElementById(`q${currentQuizStep}`).classList.remove('hidden');
+                updateProgress();
+            } else {
+                // From Q1, go back to startScreen
+                showScreen('startScreen');
+                currentQuizStep = 1;
+                screenHistory.splice(1);
+            }
+        }
+
+
+        // --- Cart Logic (Updated colors) ---
+
+        function updateCartCount() {
+            cartCountSpan.textContent = cart.length;
+            cartCountSpan.classList.toggle('hidden', cart.length === 0);
+        }
+
+        function addToCart(productId) {
+            const product = getProductById(productId);
+            if (product) {
+                cart.push(product);
+                updateCartCount();
+                alert(`${product.name} added to cart!`);
+                console.log('Cart:', cart);
+            }
+        }
+
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cartItemsContainer');
+            container.innerHTML = '';
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="text-xl text-center text-B1B1B1 mt-10 font-sans">Your cart is empty. Time to find your vibe!</p>';
+                document.getElementById('cartSummary').classList.add('hidden');
+                return;
+            }
+
+            document.getElementById('cartSummary').classList.remove('hidden');
+
+            let total = 0;
+            cart.forEach((product, index) => {
+                total += product.price;
+
+                const cardHtml = `
+                    <div class="flex items-center bg-2A2A2A p-4 rounded-xl shadow-md border-b border-DAD5C1/20">
+                        <img src="${product.imageUrl}" alt="${product.name}" class="w-20 h-20 object-cover rounded-lg mr-4 border border-111111">
+                        <div class="flex-1">
+                            <p class="font-bold text-lg text-F5F5F5 font-sans">${product.name}</p>
+                            <p class="text-sm text-B1B1B1 font-sans">${product.category} | ${product.collection || 'General'}</p>
+                            <p class="font-bold text-DAD5C1 mt-1 font-sans">${formatPrice(product.price)}</p>
+                        </div>
+                        <button onclick="removeCartItem(${index})" class="text-8B2E2E hover:text-8B2E2E/80 transition duration-200 ml-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+
+            document.getElementById('cartTotal').textContent = formatPrice(total);
+        }
+
+        function showCartScreen() {
+            renderCart();
+            showScreen('cartScreen');
+        }
+
+        function checkout() {
+            const finalTotal = document.getElementById('cartTotal').textContent;
+            
+            // Mock Order ID generation (simple timestamp or random)
+            const orderId = 'EV' + Math.floor(Math.random() * 100000000).toString().padStart(8, '0');
+
+            document.getElementById('checkoutTotalDisplay').textContent = `Total: ${finalTotal}`;
+            document.getElementById('checkoutOrderIdDisplay').textContent = orderId;
+            
+            cart.length = 0;
+            updateCartCount();
+            
+            showScreen('checkoutScreen');
+        }
+
+        function startNewSession() {
+            // Reset state
+            quizAnswers.length = 0;
+            vibeScore = 0;
+            recommendationOffset = 0;
+            lastFilteredRecommendations = [];
+            currentQuizStep = 1;
+            screenHistory.splice(0);
+            
+            showScreen('startScreen');
+        }
+
+
+        // --- Quiz and Core Functions (Score-based Matching) (Unchanged from prototype) ---
+        
+        function startQuiz() {
+            currentQuizStep = 1;
+            recommendationOffset = 0; // Reset recommendations when starting a new quiz
+            lastFilteredRecommendations = [];
+            document.querySelectorAll('.quiz-option').forEach(btn => btn.classList.remove('selected'));
+            document.querySelectorAll('.quiz-step').forEach(step => step.classList.add('hidden'));
+            document.getElementById('q1').classList.remove('hidden');
+            updateProgress();
+            showScreen('quizScreen');
+        }
+
+        function updateProgress() {
+            document.getElementById('quizProgress').textContent = `Step ${currentQuizStep} of ${totalQuizSteps}`;
+        }
+
+        document.querySelectorAll('.quiz-option').forEach(button => {
+            button.addEventListener('click', function() {
+                const parentDiv = this.closest('.quiz-step');
+                const stepId = parentDiv.id;
+
+                const siblingContainer = this.closest('#q2a') || parentDiv;
+                siblingContainer.querySelectorAll('.quiz-option').forEach(btn => btn.classList.remove('selected'));
+                this.classList.add('selected');
+
+                quizAnswers[stepId] = this.getAttribute('data-answer');
+                
+                setTimeout(() => {
+                    handleNextStep();
+                }, 400);
+            });
+        });
+
+        function handleNextStep() {
+            if (currentQuizStep < totalQuizSteps) {
+                document.getElementById(`q${currentQuizStep}`).classList.add('hidden');
+                currentQuizStep++;
+                document.getElementById(`q${currentQuizStep}`).classList.remove('hidden');
+                updateProgress();
+            } else {
+                document.getElementById(`q${currentQuizStep}`).classList.add('hidden');
+                showScreen('loadingScreen');
+                
+                recommendationOffset = 0;	
+
+                setTimeout(() => {
+                    lastFilteredRecommendations = getAllFilteredRecommendations(quizAnswers);
+                    const recommendations = getNextRecommendedBatch();
+
+                    renderVibeMatch(quizAnswers);	
+                    renderProducts(recommendations, 'productGrid');
+                    showScreen('resultScreen');
+                }, 1500);
+            }
+        }
+
+        const vibeMatches = {
+            'Party/Celebration_Classic_Polished Gold': { icon: 'Zendaya: Effortlessly Chic', subtitle: 'The ultimate statement pieces: Polished gold and dramatic silhouettes for the evening.', celebrityImage: 'https://placehold.co/400x200/ff69b4/F5F5F5?text=Zendaya+Statement+Gold' },
+            'Work_Modern_Matte Silver': { icon: 'Amal Clooney: Power Minimalist', subtitle: 'Sleek, geometric designs that convey confidence and professionalism in matte silver.', celebrityImage: 'https://placehold.co/400x200/3c8dbc/F5F5F5?text=Amal+Clooney+Geometric' },
+            'Casual_Relaxed_Mixed Metals': { icon: 'Gigi Hadid: Relaxed Luxury', subtitle: 'Effortless layering with mixed metals for a trendy, casual-cool look.', celebrityImage: 'https://placehold.co/400x200/ffa500/F5F5F5?text=Gigi+Hadid+Casual+Layers' },
+            'Work_Classic_Polished Gold': { icon: 'Priyanka Chopra: Classic Structure', subtitle: 'Timeless elegance in polished gold, perfect for structured workwear.', celebrityImage: 'https://placehold.co/400x200/9932CC/F5F5F5?text=Priyanka+Gold+Elegance' },
+            'Party/Celebration_Modern_Mixed Metals': { icon: 'Rihanna: Bold & Experimental', subtitle: 'Unconventional pairings and bold mixed metals for maximum impact.', celebrityImage: 'https://placehold.co/400x200/CC0000/F5F5F5?text=Rihanna+Bold+Mix' },
+            'default': { icon: 'Audrey Hepburn: Timeless Elegance', subtitle: 'When in doubt, choose classic, refined styles that transcend trends.', celebrityImage: 'https://placehold.co/400x200/4CAF50/F5F5F5?text=Audrey+Hepburn+Classic' }
+        };
+
+        function renderVibeMatch(answers) {
+            // Use Q1 and Q3, which now map to Occasion and Style, to find the celebrity vibe
+            const key = `${answers.q1}_${answers.q3}_${answers.q4}`;
+            const match = vibeMatches[key] || vibeMatches['default'];
+            document.getElementById('styleIcon').textContent = match.icon;
+            document.getElementById('styleSubtitle').textContent = match.subtitle;
+            document.getElementById('celebImage').src = match.celebrityImage;
+            document.getElementById('celebImage').alt = match.icon;
+        }
+        
+        // Score-based Recommendation Logic
+        function getAllFilteredRecommendations(answers) {
+            const primaryCategory = answers.q2;
+            const occasion = answers.q1;
+            const outfitStyle = answers.q3;
+            const metal = answers.q4;
+
+            let scoredRecommendations = productData.map(product => {
+                let score = 0;
+                const productCategory = product.category === 'Pendant' ? 'Necklace' : product.category;
+                const productCollection = product.collection || '';
+                
+                // 1. Primary Category Match (Highest weight: 3)
+                if (productCategory === primaryCategory) {
+                    score += 3;	
+                }	
+
+                // 2. Metal Match (Weight: 2)
+                if (product.tags.includes(metal)) {
+                    score += 2;
+                }
+                
+                // 3. Occasion Match (Weight: 1.5)
+                if (product.tags.includes(occasion)) {
+                    score += 1.5;
+                }
+
+                // 4. Style Match (Weight: 1)
+                if (productCollection.includes(outfitStyle) || product.tags.includes(outfitStyle)) {
+                    score += 1;
+                }
+                
+                // 5. Price Proximity to mid-range (Weight: 0.5 max)
+                const PRICE_TARGET = 100000;
+                const price_diff = Math.abs(product.price - PRICE_TARGET);
+                const price_bonus = 0.5 * (1 - Math.min(price_diff / 500000, 1));	
+                score += price_bonus;
+
+                return { ...product, score };
+            });
+
+            // Sort by score (highest first)
+            scoredRecommendations.sort((a, b) => b.score - a.score);	
+
+            return scoredRecommendations;
+        }
+
+        function getNextRecommendedBatch() {
+            const batchSize = 4;
+            
+            // Use the globally stored filtered and sorted list
+            const recommendations = lastFilteredRecommendations.slice(recommendationOffset, recommendationOffset + batchSize);
+            recommendationOffset += recommendations.length; // Update offset for the next batch
+            
+            return recommendations;
+        }
+
+        function showMoreRecommendations() {
+            const nextRecommendations = getNextRecommendedBatch();
+            
+            if (nextRecommendations.length === 0) {
+                alert("That's all the vibe matches we found for you! Try the 'Browse All Products' feature or restart the quiz.");
+                return;
+            }
+
+            // Clear the existing grid and render the new batch
+            document.getElementById('productGrid').innerHTML = '';
+            renderProducts(nextRecommendations, 'productGrid');
+            
+            // Scroll to the products to show the change
+            document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // --- renderProducts: Displays products (with new styles) ---
+        function renderProducts(productsToDisplay, gridId) {
+            const productGrid = document.getElementById(gridId);
+            
+            productGrid.innerHTML = '';	
+
+            productsToDisplay.forEach((product) => {
+                const formattedPrice = formatPrice(product.price);
+                const category = product.category === 'Pendant' ? 'Necklace' : product.category;
+                const collectionName = product.collection || 'General Line';
+                // Use Pewter Gray for muted details
+                const details = `<p class="text-xs text-B1B1B1 mt-1 font-sans">${category} | ${collectionName}</p>`;
+
+                const cardHtml = `
+                    <div class="product-card bg-2A2A2A/50 rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-DAD5C1/30 hover:shadow-2xl border border-B1B1B1/10">
+                        <div class="h-40 bg-111111 flex items-center justify-center text-B1B1B1 text-lg">
+                            <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/8B2E2E/F5F5F5?text=Image+${product.id}+Error'; this.style.opacity='0.7'">
+                        </div>
+                        <div class="p-4">
+                            <p class="font-serif font-semibold text-base text-F5F5F5 h-12 overflow-hidden">${product.name}</p>	
+                            ${details}
+                            <p class="font-sans font-bold text-lg text-DAD5C1 mt-2">${formattedPrice}</p>
+                            
+                            <div class="flex justify-center mt-2">
+                                <button onclick="showFeedbackModal('${product.name}', ${product.id})" class="flex-1 py-2 bg-111111 text-F5F5F5 text-sm font-sans rounded-lg hover:bg-2A2A2A transition duration-200">
+                                    Try On & Rate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productGrid.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+        
+        function showAllProducts() {
+            recommendationOffset = 0;	
+            filterAndSortProducts();	
+            showScreen('allProductsScreen');
+        }
+
+        function filterAndSortProducts() {
+            let filteredProducts = [...productData];
+            const categoryFilter = document.getElementById('filterCategory').value;
+            const sortBy = document.getElementById('sortBy').value;
+
+            if (categoryFilter) {
+                filteredProducts = filteredProducts.filter(product => {
+                    const productCategory = product.category === 'Pendant' ? 'Necklace' : product.category;
+                    return productCategory === categoryFilter;
+                });
+            }
+
+            switch (sortBy) {
+                case 'priceLow': filteredProducts.sort((a, b) => a.price - b.price); break;
+                case 'priceHigh': filteredProducts.sort((a, b) => b.price - a.price); break;
+                case 'nameAsc': filteredProducts.sort((a, b) => a.name.localeCompare(b.name)); break;
+                default: filteredProducts.sort((a, b) => a.id - b.id); break;
+            }
+
+            renderProducts(filteredProducts, 'allProductGrid');
+        }
+
+        // --- Try-On and Feedback Logic (Updated colors) ---
+        function showFeedbackModal(productName, productId) {
+            document.getElementById('modalProductName').textContent = productName;
+            document.getElementById('emotionDetector').textContent = "Detecting Engagement...";
+            document.getElementById('feedbackModal').setAttribute('data-product-id', productId);	
+            document.getElementById('feedbackModal').classList.remove('hidden');
+            document.getElementById('feedbackModal').classList.add('flex');
+
+            setTimeout(() => {
+                document.getElementById('emotionDetector').textContent = "Engagement: Confirmed (Active View)";
+            }, 1000);
+        }
+
+        function hideFeedbackModal() {
+            document.getElementById('feedbackModal').classList.remove('flex');
+            document.getElementById('feedbackModal').classList.add('hidden');
+        }
+
+        function handleFeedback(action) {
+            const productId = parseInt(document.getElementById('feedbackModal').getAttribute('data-product-id'));
+
+            if (action === 'love') {
+                vibeScore += 1;	
+                addToCart(productId); // User confirmed they liked it -> ADD TO CART
+                console.log(`User confirmed Vibe and added product ID ${productId}. Vibe Score: ${vibeScore}`);
+            } else if (action === 'dislike') {
+                vibeScore = Math.max(0, vibeScore - 1);	
+                console.log(`User requested refinement for product ID ${productId}. Vibe Score: ${vibeScore}`);
+            }
+            hideFeedbackModal();
+            showScreen('resultScreen'); // Return to results
+        }
+
+        function showLeadCaptureScreen() {
+            const profileUrl = `https://evoljewels.com/saved-look?vibe=${btoa(JSON.stringify(quizAnswers))}&match=true`;
+            
+            QRCode.toCanvas(document.getElementById('qrCanvas'), profileUrl, {
+                width: 200,
+                margin: 2
+            }, function (error) {
+                if (error) console.error(error)
+                else console.log('QR Code generated');
+            });
+            
+            showScreen('leadCaptureScreen');
+        }
+
+        // --- Product Data (Remains the same) ---
+        const productData = [
+            { id: 1, name: 'Halo Spiral Diamond Earrings', price: 138477.07, category: 'Earring', collection: 'Statement', imageUrl: getImageUrl(1), tags: ['Party/Celebration', 'Ears', 'Polished Gold'] },
+            { id: 2, name: 'Petal Lace Diamond Earrings', price: 82747.55, category: 'Earring', collection: 'Floral', imageUrl: getImageUrl(2), tags: ['Work', 'Ears', 'Polished Gold'] },
+            { id: 3, name: 'Aria Stacked Diamond Earrings', price: 73181.12, category: 'Earring', collection: 'Tribal', imageUrl: getImageUrl(3), tags: ['Casual', 'Ears', 'Mixed Metals'] },
+            { id: 4, name: 'Eclipse Enamel Diamond Earrings', price: 123940.92, category: 'Earring', collection: 'Modern', imageUrl: getImageUrl(4), tags: ['Party/Celebration', 'Ears', 'Matte Silver'] },
+            { id: 5, name: 'Blossom Vine Diamond Earrings', price: 210731.54, category: 'Earring', collection: 'Classic', imageUrl: getImageUrl(5), tags: ['Casual', 'Ears', 'Polished Gold'] },
+            { id: 6, name: 'Ethereal Petal Drop Earrings', price: 455910.50, category: 'Earring', collection: 'Statement', imageUrl: getImageUrl(6), tags: ['Party/Celebration', 'Ears', 'Polished Gold'] },
+            { id: 7, name: 'Cascade Diamond Chandelier Earrings', price: 226185.92, category: 'Earring', collection: 'Statement', imageUrl: getImageUrl(7), tags: ['Party/Celebration', 'Ears', 'Polished Gold'] },
+            { id: 8, name: 'Ethereal Cascade Diamond Earrings', price: 204770.74, category: 'Earring', collection: 'Modern', imageUrl: getImageUrl(8), tags: ['Party/Celebration', 'Ears', 'Mixed Metals'] },
+            { id: 9, name: 'Swirl Drop Diamond Earrings', price: 78252.43, category: 'Earring', collection: 'Cosmic', imageUrl: getImageUrl(9), tags: ['Work', 'Ears', 'Matte Silver'] },
+            { id: 10, name: 'Radiant Spiral Diamond Earrings', price: 106526.38, category: 'Earring', collection: 'Sun', imageUrl: getImageUrl(10), tags: ['Casual', 'Ears', 'Polished Gold'] },
+            { id: 11, name: 'Seraphine Leaf Diamond Ring', price: 60366.21, category: 'Ring', collection: 'Floral', imageUrl: getImageUrl(11), tags: ['Casual', 'Hands', 'Polished Gold'] },
+            { id: 12, name: 'Aurora Crown Diamond Ring', price: 48842.15, category: 'Ring', collection: 'Tribal', imageUrl: getImageUrl(12), tags: ['Work', 'Hands', 'Matte Silver'] },
+            { id: 13, name: 'Radiant Trinity Diamond Ring', price: 161697.54, category: 'Ring', collection: 'Statement', imageUrl: getImageUrl(13), tags: ['Party/Celebration', 'Hands', 'Polished Gold'] },
+            { id: 14, name: 'Phenomena Stackable Diamond Ring', price: 62307.63, category: 'Ring', collection: 'Minimal', imageUrl: getImageUrl(14), tags: ['Casual', 'Hands', 'Mixed Metals'] },
+            { id: 15, name: 'Lustrous Split Emerald Ring', price: 132950.13, category: 'Ring', collection: 'Statement', imageUrl: getImageUrl(15), tags: ['Party/Celebration', 'Hands', 'Polished Gold'] },
+            { id: 16, name: 'Alchemy Diamond Ring', price: 307245.76, category: 'Ring', collection: 'Modern', imageUrl: getImageUrl(16), tags: ['Work', 'Hands', 'Matte Silver'] },
+            { id: 17, name: 'Eve Diamond Ring', price: 189864.90, category: 'Ring', collection: 'Classic', imageUrl: getImageUrl(17), tags: ['Party/Celebration', 'Hands', 'Polished Gold'] },
+            { id: 18, name: 'Ethereal Pear Diamond Ring', price: 207369.29, category: 'Ring', collection: 'Classic', imageUrl: getImageUrl(18), tags: ['Work', 'Hands', 'Polished Gold'] },
+            { id: 19, name: 'Halo Glow Diamond Ring', price: 136083.82, category: 'Ring', collection: 'Minimal', imageUrl: getImageUrl(19), tags: ['Casual', 'Hands', 'Polished Gold'] },
+            { id: 20, name: 'Infinity Round Diamond Ring', price: 112273.24, category: 'Ring', collection: 'Modern', imageUrl: getImageUrl(20), tags: ['Casual', 'Hands', 'Mixed Metals'] },
+            { id: 21, name: 'Sculpted Pear Signet Ring', price: 94996.57, category: 'Ring', collection: 'Modern', imageUrl: getImageUrl(21), tags: ['Work', 'Hands', 'Matte Silver'] },
+            { id: 22, name: 'Elyse Round Diamond Solitaire', price: 146406.00, category: 'Ring', collection: 'Classic', imageUrl: getImageUrl(22), tags: ['Party/Celebration', 'Hands', 'Polished Gold'] },
+            { id: 23, name: 'Colossus Diamond Halo Ring', price: 183617.77, category: 'Ring', collection: 'Statement', imageUrl: getImageUrl(23), tags: ['Party/Celebration', 'Hands', 'Mixed Metals'] },
+            { id: 24, name: 'Gracie Diamond Eternity Ring', price: 263352.20, category: 'Ring', collection: 'Classic', imageUrl: getImageUrl(24), tags: ['Party/Celebration', 'Hands', 'Polished Gold'] },
+            { id: 25, name: 'Bold Pear Diamond Ring', price: 112516.85, category: 'Ring', collection: 'Modern', imageUrl: getImageUrl(25), tags: ['Work', 'Hands', 'Mixed Metals'] },
+            { id: 26, name: 'Butterfly Whimsy Diamond Pendant', price: 48196.36, category: 'Pendant', collection: 'Butterfly', imageUrl: getImageUrl(26), tags: ['Casual', 'Neckline', 'Polished Gold'] },
+            { id: 27, name: 'Swirl Drop Diamond Pendant', price: 43684.22, category: 'Pendant', collection: 'Cosmic', imageUrl: getImageUrl(27), tags: ['Casual', 'Neckline', 'Mixed Metals'] },
+            { id: 28, name: 'Diamond Embrace Pendant', price: 61633.71, category: 'Pendant', collection: 'Floral', imageUrl: getImageUrl(28), tags: ['Work', 'Neckline', 'Matte Silver'] },
+            { id: 29, name: 'Modern Layered Diamond Pendant', price: 56855.99, category: 'Pendant', collection: 'Tribal', imageUrl: getImageUrl(29), tags: ['Casual', 'Neckline', 'Mixed Metals'] },
+            { id: 30, name: 'Zuri Diamond Pendant', price: 71835.44, category: 'Pendant', collection: 'Minimal', imageUrl: getImageUrl(30), tags: ['Work', 'Neckline', 'Polished Gold'] },
+            { id: 31, name: 'Infinitum Diamond Pendant', price: 39284.93, category: 'Pendant', collection: 'Minimal', imageUrl: getImageUrl(31), tags: ['Casual', 'Neckline', 'Matte Silver'] },
+            { id: 32, name: 'Apollo Diamond Pendant', price: 176982.14, category: 'Pendant', collection: 'Statement', imageUrl: getImageUrl(32), tags: ['Party/Celebration', 'Neckline', 'Polished Gold'] },
+            { id: 33, name: 'My Beloved Diamond Pendant', price: 97157.72, category: 'Pendant', collection: 'Classic', imageUrl: getImageUrl(33), tags: ['Casual', 'Neckline', 'Polished Gold'] },
+            { id: 34, name: 'Circle Of Life Diamond Pendant', price: 34476.48, category: 'Pendant', collection: 'Modern', imageUrl: getImageUrl(34), tags: ['Work', 'Neckline', 'Mixed Metals'] },
+            { id: 35, name: 'Helios Diamond Halo Pendant', price: 180317.52, category: 'Pendant', collection: 'Statement', imageUrl: getImageUrl(35), tags: ['Party/Celebration', 'Neckline', 'Matte Silver'] },
+            { id: 36, name: 'Eden Diamond Pendant', price: 46131.60, category: 'Pendant', collection: 'Floral', imageUrl: getImageUrl(36), tags: ['Casual', 'Neckline', 'Polished Gold'] },
+            { id: 37, name: 'Davina Diamond Halo Pendant', price: 50446.46, category: 'Pendant', collection: 'Minimal', imageUrl: getImageUrl(37), tags: ['Work', 'Neckline', 'Matte Silver'] },
+            { id: 38, name: 'Heart Diamond Pendant', price: 235460.03, category: 'Pendant', collection: 'Sun', imageUrl: getImageUrl(38), tags: ['Party/Celebration', 'Neckline', 'Polished Gold'] },
+            { id: 39, name: 'Valentine Diamond Pendant', price: 34670.55, category: 'Pendant', collection: 'Paan', imageUrl: getImageUrl(39), tags: ['Casual', 'Neckline', 'Matte Silver'] },
+            { id: 40, name: 'Regal Crown Bangle Bracelet', price: 167725.11, category: 'Bracelet', collection: 'Tribal', imageUrl: getImageUrl(40), tags: ['Work', 'Hands', 'Polished Gold'] },
+            { id: 41, name: 'Ethereal Spiral Diamond Bracelet', price: 199074.41, category: 'Bracelet', collection: 'Sun', imageUrl: getImageUrl(41), tags: ['Party/Celebration', 'Hands', 'Matte Silver'] },
+            { id: 42, name: 'Eternal Spark Diamond Bracelet', price: 310678.04, category: 'Bracelet', collection: 'Classic', imageUrl: getImageUrl(42), tags: ['Party/Celebration', 'Hands', 'Polished Gold'] },
+            { id: 43, name: 'Orion Diamond Bracelet', price: 259135.49, category: 'Bracelet', collection: 'Modern', imageUrl: getImageUrl(43), tags: ['Work', 'Hands', 'Mixed Metals'] },
+            { id: 44, name: 'Poly Dazzle Diamond Tennis Bracelet', price: 357003.21, category: 'Bracelet', collection: 'Statement', imageUrl: getImageUrl(44), tags: ['Party/Celebration', 'Hands', 'Polished Gold'] },
+            { id: 45, name: 'Twain Sparkle Cuff Bracelet', price: 231479.56, category: 'Bracelet', collection: 'Minimal', imageUrl: getImageUrl(45), tags: ['Casual', 'Hands', 'Matte Silver'] },
+            { id: 46, name: 'Trinity Diamond Bangle Bracelet', price: 250506.97, category: 'Bracelet', collection: 'Classic', imageUrl: getImageUrl(46), tags: ['Work', 'Hands', 'Polished Gold'] },
+            { id: 47, name: 'Classic Tennis Bracelet', price: 628331.61, category: 'Bracelet', collection: 'Classic', imageUrl: getImageUrl(47), tags: ['Party/Celebration', 'Hands', 'Polished Gold'] },
+            { id: 48, name: 'Sterling Diamond Bangle Bracelet', price: 432449.71, category: 'Bracelet', collection: 'Modern', imageUrl: getImageUrl(48), tags: ['Work', 'Hands', 'Matte Silver'] },
+            { id: 49, name: 'Frosty Drops Diamond Bracelet', price: 212512.85, category: 'Bracelet', collection: 'Statement', imageUrl: getImageUrl(49), tags: ['Casual', 'Hands', 'Mixed Metals'] },
+            { id: 50, name: 'Meadow Graduation Necklace', price: 470722.14, category: 'Necklace', collection: 'Statement', imageUrl: getImageUrl(50), tags: ['Party/Celebration', 'Neckline', 'Polished Gold'] },
+            { id: 51, name: 'Rainbow Tennis Necklace', price: 244844.81, category: 'Necklace', collection: 'Modern', imageUrl: getImageUrl(51), tags: ['Casual', 'Neckline', 'Mixed Metals'] },
+            { id: 52, name: 'Celestial Cascade Diamond Necklace', price: 704761.82, category: 'Necklace', collection: 'Statement', imageUrl: getImageUrl(52), tags: ['Party/Celebration', 'Neckline', 'Polished Gold'] },
+            { id: 53, name: 'Lustre Five Stone Diamond Necklace', price: 68559.56, category: 'Necklace', collection: 'Minimal', imageUrl: getImageUrl(53), tags: ['Work', 'Neckline', 'Matte Silver'] },
+            { id: 54, name: 'Ivy Diamond Necklace', price: 1024606.30, category: 'Necklace', collection: 'Classic', imageUrl: getImageUrl(54), tags: ['Party/Celebration', 'Neckline', 'Polished Gold'] },
+            { id: 55, name: 'Periwinkle Diamond Necklace', price: 56130.27, category: 'Necklace', collection: 'Minimal', imageUrl: getImageUrl(55), tags: ['Casual', 'Neckline', 'Matte Silver'] },
+            { id: 56, name: 'Gamut Marquise Necklace', price: 62608.29, category: 'Necklace', collection: 'Modern', imageUrl: getImageUrl(56), tags: ['Work', 'Neckline', 'Mixed Metals'] },
+            { id: 57, name: 'Vector Classic Tennis Necklace', price: 1265973.97, category: 'Necklace', collection: 'Statement', imageUrl: getImageUrl(57), tags: ['Party/Celebration', 'Neckline', 'Polished Gold'] },
+            { id: 58, name: 'Elite Necklace', price: 48994.68, category: 'Necklace', collection: 'Minimal', imageUrl: getImageUrl(58), tags: ['Work', 'Neckline', 'Polished Gold'] },
+            { id: 59, name: 'Ivy Necklace', price: 412208.73, category: 'Necklace', collection: 'Classic', imageUrl: getImageUrl(59), tags: ['Casual', 'Neckline', 'Polished Gold'] },
+            { id: 60, name: 'Peace Enchantress Charms Necklace', price: 556016.68, category: 'Necklace', collection: 'Tribal', imageUrl: getImageUrl(60), tags: ['Casual', 'Neckline', 'Mixed Metals'] },
+        ];
+
+        // --- Initialization ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showScreen('startScreen');
+            filterAndSortProducts();
+            updateCartCount();	
+        });
+    </script>
+</body>
+</html>
